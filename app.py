@@ -1,14 +1,9 @@
-"""
-streamlit run app.py
-"""
-
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
 # Título de la aplicación
 st.title("📈 Análisis de Valoración de Cedear/Acción")
-
 
 # Carga de los datos
 @st.cache_data
@@ -18,7 +13,6 @@ def load_data(file_path):
     """
     df = pd.read_csv(file_path)
     return df
-
 
 try:
     df = load_data("data.csv")
@@ -63,9 +57,11 @@ try:
 
     # Configura los ejes y títulos, incluyendo la rotación del eje X
     fig.update_layout(
-        title_text="Evolución de Métricas de la Acción",
+        # Línea modificada para añadir el nombre del cedear
+        title_text="Evolución de Métricas de la Acción: $GOOGL",
         xaxis=dict(
-            domain=[0.1, 0.9], tickangle=45  # <--- Así es como debe estar la línea
+            domain=[0.1, 0.9],
+            tickangle=45,
         ),
         yaxis=dict(
             title="OCF por Acción",
